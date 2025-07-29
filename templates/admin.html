@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Tambah Artikel</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f3f3f3;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: black;
+            color: limegreen;
+            padding: 1em;
+            text-align: center;
+            font-size: 2em;
+        }
+        form {
+            max-width: 600px;
+            margin: 2em auto;
+            background: white;
+            padding: 2em;
+            border-radius: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            margin-bottom: 1em;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: limegreen;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>Admin Panel - SS News</header>
+    <form method="POST">
+        <input type="text" name="title" placeholder="Judul Artikel" required>
+        <input type="text" name="date" placeholder="Tanggal (misal: 28 Juli 2025)" required>
+        <input type="text" name="author" placeholder="Penulis" required>
+        <textarea name="content" placeholder="Isi artikel..." rows="8" required></textarea>
+        <button type="submit">Simpan Artikel</button>
+    </form>
+</body>
+</html>

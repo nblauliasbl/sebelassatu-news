@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ action }} Artikel - Sebelas Satu News{% endblock %}
+
+{% block content %}
+<h1 style="color:limegreen; text-align:center; margin-bottom:30px;">{{ action }} Artikel</h1>
+
+<form method="POST" enctype="multipart/form-data" 
+      style="max-width:700px; margin:auto; background:#1e1e1e; padding:25px; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,0.5);">
+
+    <!-- Judul -->
+    <label style="display:block; color:yellow; margin-bottom:8px;">Judul Artikel</label>
+    <input type="text" name="title" value="{{ article.title if article else '' }}" required
+           style="width:100%; padding:12px; margin-bottom:20px; border:none; border-radius:6px; background:#2a2a2a; color:white;">
+
+    <!-- Isi Konten -->
+    <label style="display:block; color:yellow; margin-bottom:8px;">Isi Artikel</label>
+    <textarea name="content" rows="10" required
+              style="width:100%; padding:12px; margin-bottom:20px; border:none; border-radius:6px; background:#2a2a2a; color:white;">{{ article.content if article else '' }}</textarea>
+
+    <!-- Upload Thumbnail -->
+    <label style="display:block; color:yellow; margin-bottom:8px;">Thumbnail Artikel</label>
+    <input type="file" name="image" accept="image/*"
+           style="margin-bottom:20px; color:white;">
+
+    {% if article and article.image %}
+        <p style="color:gray; font-size:0.9em; margin-bottom:15px;">Gambar saat ini:</p>
+        <img src="{{ url_for('static', filename='uploads/' + article.image) }}" 
+             alt="Thumbnail" style="max-width:200px; border-radius:6px; margin-bottom:20px;">
+    {% endif %}
+
+    <!-- Tombol Submit -->
+    <div style="text-align:center;">
+        <button type="submit" 
+                style="background:limegreen; color:black; padding:12px 25px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">
+            💾 Simpan Artikel
+        </button>
+        <a href="{{ url_for('admin_list') }}" 
+           style="background:red; color:white; padding:12px 25px; border-radius:8px; text-decoration:none; margin-left:10px;">
+            ✖ Batal
+        </a>
+    </div>
+</form>
+{% endblock %}

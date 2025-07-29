@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Profil Saya</h2>
+
+  {% if message %}
+    <div class="alert alert-info">{{ message }}</div>
+  {% endif %}
+
+  <form method="POST" action="https://sebelassatu.news/profile">
+    <input type="hidden" name="action" value="update_info" />
+    <div class="mb-3">
+      <label for="name" class="form-label">Nama</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{ user.name }}" required />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Update Profil</button>
+  </form>
+
+  <hr />
+
+  <h3>Ubah Password</h3>
+  <form method="POST" action="https://sebelassatu.news/profile">
+    <input type="hidden" name="action" value="update_password" />
+    <div class="mb-3">
+      <label for="old_password" class="form-label">Password Lama</label>
+      <input type="password" class="form-control" id="old_password" name="old_password" required />
+    </div>
+    <div class="mb-3">
+      <label for="new_password" class="form-label">Password Baru</label>
+      <input type="password" class="form-control" id="new_password" name="new_password" required />
+    </div>
+    <div class="mb-3">
+      <label for="confirm_password" class="form-label">Konfirmasi Password Baru</label>
+      <input type="password" class="form-control" id="confirm_password" name="confirm_password" required />
+    </div>
+    <button type="submit" class="btn btn-warning">Ganti Password</button>
+  </form>
+
+  <hr />
+
+  <h3>Artikel Saya</h3>
+  {% if articles %}
+    <ul>
+      {% for article in articles %}
+        <li>
+          <a href="https://sebelassatu.news/article/{{ article.slug }}">{{ article.title }}</a>
+          | <a href="https://sebelassatu.news/edit_article/{{ article.slug }}">Edit</a>
+          | <a href="https://sebelassatu.news/delete_article/{{ article.slug }}" onclick="return confirm('Yakin ingin hapus artikel ini?')">Hapus</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Belum ada artikel.</p>
+  {% endif %}
+{% endblock %}

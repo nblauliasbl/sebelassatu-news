@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Berita Terbaru</h1>
+
+  {% if articles %}
+    <div class="list-group">
+      {% for article in articles %}
+        <a href="https://sebelassatu.news/article/{{ article.slug }}" class="list-group-item list-group-item-action">
+          <h5>{{ article.title }}</h5>
+          <small>oleh {{ article.author }} | {{ article.date }}</small>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Belum ada artikel.</p>
+  {% endif %}
+
+  {% if user %}
+    <form action="https://sebelassatu.news/add_article" method="POST" class="mt-4">
+      <h3>Tambah Artikel Baru</h3>
+      <div class="mb-3">
+        <label for="title" class="form-label">Judul</label>
+        <input type="text" class="form-control" id="title" name="title" required />
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Isi Artikel</label>
+        <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Tambah Artikel</button>
+    </form>
+  {% else %}
+    <p><a href="https://sebelassatu.news/login">Login</a> untuk menambah artikel.</p>
+  {% endif %}
+{% endblock %}
